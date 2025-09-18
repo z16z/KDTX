@@ -1,0 +1,247 @@
+# 1.新增课程(成功)
+- name: add_course
+  request:
+    method: POST
+    url: http://kdtx-test.itheima.net/api/clues/course
+    headers:
+      Authorization: "Bearer {{token}}"
+    json:
+      name: '测测测测测测6{{timestamp}}'
+      subject: '6'
+      price: 899
+      applicablePerson: '2'
+      info: '测测测测测测6'
+  response:
+    status_code: 200
+    json:
+      msg: '操作成功'
+      code: 200
+
+# 2.新增失败（未登录）
+
+- name: add_course_notlogin
+  pre_request:
+    # 引用你已有的登录失败用例
+    # 注意：这个用例是故意失败的，它的目的是不产生有效的token
+    name: login_fail
+    pre_request: # 引用获取验证码的用例
+      name: get_verify-code
+      request:
+        method: GET
+        url: http://kdtx-test.itheima.net/api/captchaImage
+      response:
+        status_code: 200
+      extract:
+        uuid: $.uuid
+    request:
+      method: POST
+      url: http://kdtx-test.itheima.net/api/login
+      json:
+        username: "" # 故意传空用户名
+        password: "HM_2023_test"
+        code: 2
+        uuid: "{{uuid}}"
+    response:
+      status_code: 200
+      json:
+        msg: "用户不存在/密码错误"
+        code: 500
+  request:
+    method: POST
+    url: http://kdtx-test.itheima.net/api/clues/course
+    json:
+      name: '测测测测测测6'
+      subject: '6'
+      price: 899
+      applicablePerson: '2'
+      info: '测测测测测测6'
+  response:
+    status_code: 200
+    json:
+      msg: '请求访问：/clues/course，认证失败，无法访问系统资源'
+      code: 401
+
+# 3.新增失败（课程名字为空）
+- name: add_course_namenull
+  request:
+    method: POST
+    url: http://kdtx-test.itheima.net/api/clues/course
+    headers:
+      Authorization: "Bearer {{token}}"
+    json:
+      name: null
+      subject: '6'
+      price: 899
+      applicablePerson: '2'
+      info: '测测测测测测'
+  response:
+    status_code: 200
+    json:
+      msg: '操作失败'
+      code: 500
+
+# 4.查询课程
+- name: query_course1
+  pre_request:
+    name: add_course
+    request:
+      method: POST
+      url: http://kdtx-test.itheima.net/api/clues/course
+      headers:
+        Authorization: "Bearer {{token}}"
+      json:
+        name: '测测测测测测6{{timestamp}}'
+        subject: '6'
+        price: 899
+        applicablePerson: '2'
+        info: '测测测测测测6'
+    response:
+      status_code: 200
+      json:
+        msg: '操作成功'
+        code: 200
+  request:
+    method: GET
+    url: http://kdtx-test.itheima.net/api/clues/course/list
+    headers:
+      Authorization: "Bearer {{token}}"
+    params:
+      name: '测测测测测测6{{timestamp}}'
+  response:
+    status_code: 200
+    json:
+      total: 1
+      msg: '查询成功'
+      code: 200
+  extract:
+    course_id: $.rows[0].id
+
+# 5.查询课程失败（不存在该课程）
+- name: query_course_notin
+  request:
+    method: GET
+    url: http://kdtx-test.itheima.net/api/clues/course/list
+    headers:
+      Authorization: "Bearer {{token}}"
+    params:
+      name: '6'
+      subject: '6'
+      price: 899
+      applicablePerson: '2'
+      info: '6'
+  response:
+    status_code: 200
+    json:
+      total: 0
+      msg: '查询成功'
+      code: 200
+
+# 6.查询课程失败（未登录）
+- name: query_course_notlogin
+  pre_request:
+    # 引用你已有的登录失败用例
+    # 注意：这个用例是故意失败的，它的目的是不产生有效的token
+    name: login_fail
+    pre_request: # 引用获取验证码的用例
+      name: get_verify-code
+      request:
+        method: GET
+        url: http://kdtx-test.itheima.net/api/captchaImage
+      response:
+        status_code: 200
+      extract:
+        uuid: $.uuid
+    request:
+      method: POST
+      url: http://kdtx-test.itheima.net/api/login
+      json:
+        username: "" # 故意传空用户名
+        password: "HM_2023_test"
+        code: 2
+        uuid: "{{uuid}}"
+    response:
+      status_code: 200
+      json:
+        msg: "用户不存在/密码错误"
+        code: 500
+  request:
+    method: GET
+    url: http://kdtx-test.itheima.net/api/clues/course/list/
+  response:
+    status_code: 200
+    json:
+#      msg: '请求访问：/clues/course/list，认证失败，无法访问系统资源'
+      code: 401
+
+# 7.查询失败（未输入查询条件）
+- name: query_course_null
+  request:
+    method: GET
+    url: http://kdtx-test.itheima.net/api/clues/course/list
+    headers:
+      Authorization: "Bearer {{token}}"
+  response:
+    status_code: 200
+    json:
+      msg: '查询成功'
+      code: 200
+
+# 修改课程
+- name: modify_course
+  request:
+    method: PUT
+    url: http://kdtx-test.itheima.net/api/clues/course
+    headers:
+      Authorization: "Bearer {{token}}"
+    json:
+      id: '{{course_id}}'
+      name: '测ce6{{timestamp}}'
+      subject: '6'
+      price: 899
+      applicablePerson: '2'
+      info: '测ce6'
+  response:
+    status_code: 200
+    json:
+      msg: '操作成功'
+      code: 200
+
+## 修改后查询
+#- name: query_course2
+#  request:
+#    method: GET
+#    url: http://kdtx-test.itheima.net/api/clues/course/{{course_id}}
+#    headers:
+#  response:
+#    status_code: 200
+#    json:
+#      total: 1
+#      msg: '查询成功'
+#      code: 200
+
+# 删除课程
+- name: delete_course
+  request:
+    method: DELETE
+    url: http://kdtx-test.itheima.net/api/clues/course/{{course_id}}
+    headers:
+      Authorization: "Bearer {{token}}"
+  response:
+    status_code: 200
+    json:
+      msg: '操作成功'
+      code: 200
+
+## 删除后再查询（失败）
+#- name: query_course3
+#  request:
+#    method: GET
+#    url: http://kdtx-test.itheima.net/api/clues/course/{{course_id}}
+#    headers:
+#      Authorization: "Bearer {{token}}"
+#  response:
+#    status_code: 200
+#    json:
+#      total: 0
+#      msg: '查询成功'
+#      code: 200

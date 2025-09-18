@@ -3,6 +3,9 @@
     接口封装时，重点是依据接口文档封装接口信息，需要使用的测试数据是从测试用例传递的
     接口方法被调用时，需要返回对应的响应结果
 """
+import os.path
+import time
+from commom.file_utils import read_file
 
 # # 1.导包
 # import requests
@@ -31,7 +34,7 @@ from commom.yaml_utils import extract_value
 
 
 # 定义类
-class LoginAPI:
+class BaseAPI:
     def __init__(self,test_data):
         # test_data是全局变量管理器，包含了需要依赖使用的变量
         self.test_data = test_data # 传入TestData实例，用于获取变量
@@ -40,6 +43,8 @@ class LoginAPI:
         """递归替换数据中的变量引用，如{{uuid}}-->实际生成的uuid的值"""
         if isinstance(data,str):  # isinstance是用来判断是否是该数据类型，即判断data是否是字符串类型
             # 查找{{变量名}}格式的字符串并且替换
+            if '{{timestamp}}' in data:
+                return str(int(time.time()))
             import re
             pattern = r'\{\{(.*?)\}\}' # 正则表达式，匹配{{xxx}}格式
             matches = re.findall(pattern,data) # 提取所有{{}}中的变量名
@@ -77,16 +82,36 @@ class LoginAPI:
         url = request_data['url']
         params = request_data.get('params',{}) # GET请求的参数，如name=xxx，默认空字典
         json_data = request_data.get('json',{}) # POST请求的JSON参数
+        file_data = request_data.get('files')
+        data_data = request_data.get('data')
         headers = request_data.get('headers',{}) # 请求头
+
 
         # 3.发送HTTP请求
         try:
-            if method == 'GET':
-                response = requests.get(url=url,params=params,headers=headers)
-            elif method == 'POST':
-                response = requests.post(url,json=json_data,headers=headers)
+            # 如果存在文件，以multipart/form-data 格式发送
+            if file_data:
+                file_name_key = list(file_data.keys())[0]
+                file_path = file_data[file_name_key]
+                file_info_tuple = read_file(file_path)
+
+                files = {file_name_key:file_info_tuple}
+
+                with file_info_tuple[1]:
+                    response = requests.request(method=method, url=url,headers=headers,files=files)
+
+            # if method == 'GET':
+            #     response = requests.get(url=url,params=params,headers=headers)
+            # elif method == 'POST':
+            #     response = requests.post(url,json=json_data,headers=headers)
+            # elif method == 'PUT':
+            #     response = requests.put(url,json=json_data,headers=headers)
+            # elif method == 'DELETE':
+            #     response = requests.delete(url,headers=headers)
+            # else:
+            #     raise ValueError(f'不支持的请求方法:{method}')
             else:
-                raise ValueError(f'不支持的请求方法:{method}')
+                response = requests.request(method=method,url=url,json=json_data,params=params,data=data_data, headers=headers)
         except Exception as e:
             raise Exception(f'请求发送失败：{str(e)}')
 
@@ -121,13 +146,22 @@ class LoginAPI:
 
         # 2.验证响应体json（部分字段匹配）
         if 'json' in expected:
-            response_json = response.json()
-            expected_json = expected['json']
-            # 遍历预期中每一个字段，验证实际响应是否包含且值一致
-            for key,expect_value in expected_json.items():
-                actual_value = response_json.get(key)
-                assert actual_value == expect_value,\
-                f'响应字段[{key}]不一致:预期{expect_value}，实际{actual_value}'
+            try:
+                response_json = response.json()
+                expected_json = expected['json']
+                # 遍历预期中每一个字段，验证实际响应是否包含且值一致
+                for key,expect_value in expected_json.items():
+                    actual_value = response_json.get(key)
+                    assert actual_value == expect_value,\
+                    f'响应字段[{key}]不一致:预期{expect_value}，实际{actual_value}'
+            except requests.exceptions.JSONDecodeError:
+                assert False,f'JSON解码失败，响应体不是JSON：{response.text}'
+
+        elif 'text' in expected:
+            expected_text = expected['text']
+            actual_text = response.text
+            assert actual_text == expected_text,\
+            f'响应文本不一致：预期:"{expected_text}",实际：{actual_text}'
 
 
 

@@ -4,24 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c3d03847-2db5-4568-ae79-12ca8525591d" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/KDTX.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/login.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/commom/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/commom/yaml_utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/login.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/test_contract.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pytest.ini" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/script/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/script/test_05login_param.py" afterDir="false" />
+    <list default="true" id="c3d03847-2db5-4568-ae79-12ca8525591d" name="更改" comment="login_api_test">
+      <change afterPath="$PROJECT_DIR$/commom/file_utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/contract.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/course.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/script/test_06course.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/script/test_07contract.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/login.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/base_api.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commom/yaml_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/commom/yaml_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/script/test_05login_param.py" beforeDir="false" afterPath="$PROJECT_DIR$/script/test_05login_param.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,28 +31,41 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;z16z&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:z16z/KDTX.git&quot;,
+    &quot;accountId&quot;: &quot;245c40d1-e350-4d57-b16e-0db6d1bbfb99&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="32iUyFfdqdIpi4X9egCifZP0paT" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python 测试.Python 测试 (test_01.py 内).executor": "Run",
-    "Python 测试.Python 测试 (test_05login_param.py 内).executor": "Run",
-    "Python 测试.test03_contract_business.TestContractBusiness.test_login_success 的 Python 测试.executor": "Run",
-    "Python 测试.test03_contract_bussinese.TestLoginSuccessful 的 Python 测试.executor": "Run",
-    "Python 测试.test_03contract_business.TestContractBusiness.test_login_success 的 Python 测试.executor": "Run",
-    "Python.main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python 测试.Python 测试 (test_01.py 内).executor&quot;: &quot;Run&quot;,
+    &quot;Python 测试.Python 测试 (test_05login_param.py 内).executor&quot;: &quot;Run&quot;,
+    &quot;Python 测试.Python 测试 (test_06course.py 内).executor&quot;: &quot;Run&quot;,
+    &quot;Python 测试.test03_contract_business.TestContractBusiness.test_login_success 的 Python 测试.executor&quot;: &quot;Run&quot;,
+    &quot;Python 测试.test03_contract_bussinese.TestLoginSuccessful 的 Python 测试.executor&quot;: &quot;Run&quot;,
+    &quot;Python 测试.test_03contract_business.TestContractBusiness.test_login_success 的 Python 测试.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/data" />
@@ -103,7 +109,7 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="script.test_03contract_business 的 Python 测试" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python 测试 (test_06course.py 内)" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="KDTX" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -114,8 +120,8 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;script.test_03contract_business&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/script/test_06course.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <configuration name="script.test_03contract_business.TestContractBusiness.test_login_success 的 Python 测试" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
@@ -151,10 +157,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.main" />
+        <item itemvalue="Python 测试.Python 测试 (test_06course.py 内)" />
         <item itemvalue="Python 测试.Python 测试 (test_05login_param.py 内)" />
         <item itemvalue="Python 测试.test_03contract_business.TestContractBusiness.test_login_success 的 Python 测试" />
         <item itemvalue="Python 测试.script.test_03contract_business.TestContractBusiness.test_login_success 的 Python 测试" />
-        <item itemvalue="Python 测试.script.test_03contract_business 的 Python 测试" />
       </list>
     </recent_temporary>
   </component>
@@ -174,6 +180,19 @@
       <option name="presentableId" value="Default" />
       <updated>1757903138991</updated>
     </task>
+    <task id="LOCAL-00001" summary="login_api_test">
+      <option name="closed" value="true" />
+      <created>1758079542826</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1758079542826</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="login_api_test" />
+    <option name="LAST_COMMIT_MESSAGE" value="login_api_test" />
   </component>
 </project>

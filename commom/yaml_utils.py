@@ -4,7 +4,7 @@ import json
 from jsonpath import jsonpath
 
 # 定义类
-class TestData:
+class GlobalData:
     """管理测试过程中的全局变量"""
     def __init__(self):
         self.variables = {}  # 存储键值对：{"uuid": "xxx", "token": "xxx"}
