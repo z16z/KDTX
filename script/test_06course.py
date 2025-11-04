@@ -21,23 +21,23 @@ yaml_path = os.path.join(parent_dir, "data", "course.yaml")
 
 cases = read_yaml(yaml_path)
 
-# 利用fixture来保证整个测试期间只进行一次登录操作
-@pytest.fixture(scope='session')
-def login_fixture():
-    """这是一个专门用于获取token的前置fixture，只执行一次"""
-    test_data = GlobalData()
-    login_api = BaseAPI(test_data)
-
-    current_script_dir = os.path.dirname(os.path.abspath(__file__))
-    parent_dir = os.path.dirname(current_script_dir)
-    login_yaml_path = os.path.join(parent_dir,"data","login.yaml")
-    cases = read_yaml(login_yaml_path)
-    for case in cases:
-        if case['name'] == 'login_success':
-            login_api.send_reqeust(case)
-            return test_data.get_variable('token')
-
-    raise Exception("未找到login_success用例")
+# # 利用fixture来保证整个测试期间只进行一次登录操作
+# @pytest.fixture(scope='session')
+# def login_fixture():
+#     """这是一个专门用于获取token的前置fixture，只执行一次"""
+#     test_data = GlobalData()
+#     login_api = BaseAPI(test_data)
+#
+#     current_script_dir = os.path.dirname(os.path.abspath(__file__))
+#     parent_dir = os.path.dirname(current_script_dir)
+#     login_yaml_path = os.path.join(parent_dir,"data","login.yaml")
+#     cases = read_yaml(login_yaml_path)
+#     for case in cases:
+#         if case['name'] == 'login_success':
+#             login_api.send_reqeust(case)
+#             return test_data.get_variable('token')
+#
+#     raise Exception("未找到login_success用例")
 
 class TestCourse:
     @pytest.fixture(scope='class')
