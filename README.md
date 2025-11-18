@@ -44,7 +44,7 @@
 * 确保已安装 `Allure` 命令行工具 (执行 `allure --version` 检查)
 * 克隆本项目:
     ```bash
-    git clone [你项目的Git仓库HTTPS链接]
+    git clone https://github.com/z16z/KDTX.git
     ```
 * 进入项目目录:
     ```bash
