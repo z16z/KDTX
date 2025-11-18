@@ -76,6 +76,4 @@
 
 ## 5. Allure 报告示例
 
-*（这里一定要放一张你本地生成的Allure报告的 **概览页(Overview)** 截图，展示出通过率、测试用例分布等，这是最有说服力的）*
 
-![Allure Report](allure.png)
