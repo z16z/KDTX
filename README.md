@@ -76,4 +76,4 @@
 
 ## 5. Allure 报告示例
 
-
+<img width="689" height="612" alt="Image" src="https://github.com/user-attachments/assets/fe3e2d8d-16df-4289-ac88-17ea344e7b39" />
