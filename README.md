@@ -53,10 +53,9 @@
 
 **2. 安装依赖**
 
-
-    ```bash
-    pip install -r requirements.txt
-    ```
+   ```bash
+   pip install -r requirements.txt
+   ```
 
 **3. 执行测试**
 
