@@ -2,4 +2,4 @@ pytest
 requests
 PyYAML
 allure-pytest
-jsonpath-ng
+jsonpath
